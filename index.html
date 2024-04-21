@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Style for the eye div */
+        .eye {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 100%;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .eye::before {
+         content: "";
+         height: 70px;
+         width: 70px;
+         border-radius: 50%;
+         background-color: rgb(143, 92, 3);
+
+        }
+        .eyeball {
+         content: "";
+         height: 30px;
+         width: 30px;
+         background-color: black;
+         border-radius: 50%;
+        }
+        .container-of-eyeball {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 30px;
+         width: 30px;
+         position: absolute;
+        }
+        .eye-blurred {
+         height: 45px;
+         width: 45px;
+         background-color: #3f2102;
+         position: absolute;
+         border-radius: 50%;
+         box-shadow: 0 0 10px 5px #3f2102;
+        }
+        /* Style for the video div */
+        .video-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="eye"><div class="eye-blurred"></div><div class="container-of-eyeball"><div class="eyeball"></div></div></div>
+    <div class="video-container">
+        <video id="cameraFeed" autoplay playsinline></video>
+    </div>
+
+    <script>
+        async function setupCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const videoElement = document.getElementById('cameraFeed');
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+            }
+        }
+
+        setupCamera();
+    </script>
+</body>
+</html>

@@ -15,6 +15,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            
         }
         .eye::before {
          content: "";
@@ -22,7 +23,6 @@
          width: 70px;
          border-radius: 50%;
          background-color: rgb(143, 92, 3);
-
         }
         .eyeball {
          content: "";
@@ -30,6 +30,15 @@
          width: 30px;
          background-color: black;
          border-radius: 50%;
+        }
+        .littleball {
+
+         height: 10px;
+         width: 10px;
+         background-color: #fff;
+         border-radius: 50%;
+         position: absolute;
+         animation: ting-ting .6s alternate infinite;
         }
         .container-of-eyeball {
          display: flex;
@@ -47,6 +56,11 @@
          border-radius: 50%;
          box-shadow: 0 0 10px 5px #3f2102;
         }
+        .container {
+         width: 100vw;
+         display: flex;
+         justify-content: center;
+        }
         /* Style for the video div */
         .video-container {
             position: relative;
@@ -59,10 +73,18 @@
             height: 100%;
             object-fit: cover;
         }
+        @keyframes ting-ting {
+         from {
+            opacity: 1;
+         } 
+         to {opacity: 0;}
+        }
     </style>
 </head>
 <body>
-    <div class="eye"><div class="eye-blurred"></div><div class="container-of-eyeball"><div class="eyeball"></div></div></div>
+    <div class="container">
+       <div class="eye"><div class="eye-blurred"></div><div class="container-of-eyeball"><div class="eyeball"><div class="littleball"></div></div></div></div>
+    </div>
     <div class="video-container">
         <video id="cameraFeed" autoplay playsinline></video>
     </div>
